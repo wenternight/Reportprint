@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>医院报告系统</title>
+    <style>
+        @media print {
+            body {
+                width: 148mm;
+                height: 210mm;
+                margin: 0;
+            }
+           .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            border: none;
+            outline: none;
+        }
+
+       .title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+       .title-container input {
+            text-align: right;
+        }
+
+       .center-text {
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+       .input-row {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            margin-bottom: 8px;
+        }
+
+       .input-row label {
+            margin-right: 8px;
+        }
+
+       .right-align-button {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+       .right-align-button button {
+            width: 120px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            border-top: 0.5px solid black;
+            border-bottom: 0.5px solid black;
+        }
+
+        select {
+            border: none;
+            outline: none;
+        }
+
+       .grid {
+            display: grid;
+            gap: 4px;
+        }
+
+       .page-content {
+            padding: 16px;
+        }
+
+       .annotation {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+       .annotation p {
+            margin: 0;
+            margin-bottom: -20px;
+        }
+
+       .footer-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+       .footer-row .input-row {
+            flex: 1;
+        }
+
+       .footer-separator {
+            border-top: 0.5px solid black;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black">
+    <!-- 登录注册部分 -->
+    <div id="login-register" class="flex flex-col items-center justify-center h-screen">
+        <h2 class="text-2xl font-bold mb-4">请登录或注册</h2>
+        <input type="text" placeholder="用户名" class="border p-2 mb-2 w-64">
+        <input type="password" placeholder="密码" class="border p-2 mb-2 w-64">
+        <button onclick="showReport()" class="bg-blue-500 text-white p-2 w-64 rounded">登录/注册</button>
+    </div>
+
+    <!-- 报告部分 -->
+    <div id="report" class="hidden page-content">
+        <!-- 第一部分：可编辑标题 -->
+        <div class="title-container mb-4">
+            <input type="text" value="****" class="mr-1" id="hospital-name">
+            <span>医院</span>
+        </div>
+        <!-- 第二部分：可编辑文字 -->
+        <div class="center-text mb-4">
+            <input type="text" value="幽门螺杆菌抗体分型报告模板" style="width: 100%; text-align: center;">
+        </div>
+        <!-- 第三部分：用户信息 -->
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="input-row">
+                <label>姓名：</label>
+                <input type="text">
+            </div>
+            <div class="input-row">
+                <label>科别：</label>
+                <input type="text" value="体检中心">
+            </div>
+            <div class="input-row">
+                <label>样本种类：</label>
+                <input type="text" value="血清">
+            </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="input-row">
+                <label>性别：</label>
+                <select>
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <label>实验室：</label>
+                <input type="text" value="免疫">
+            </div>
+            <div class="input-row">
+                <label>申请医生：</label>
+                <input type="text" value="体检">
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="input-row">
+                <label>年龄：</label>
+                <input type="text">
+            </div>
+            <div class="input-row">
+                <label>临床诊断：</label>
+                <input type="text">
+            </div>
+        </div>
+        <!-- 第四部分：表格 -->
+        <table class="mb-4">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>项目</th>
+                    <th>结果</th>
+                    <th>参考区间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1 Ure</td>
+                    <td>尿素酶</td>
+                    <td>
+                        <select>
+                            <option>阳性</option>
+                            <option>阴性</option>
+                        </select>
+                    </td>
+                    <td>阴性</td>
+                </tr>
+                <tr>
+                    <td>2 CagA</td>
+                    <td>细胞毒素相关蛋白A</td>
+                    <td>
+                        <select>
+                            <option>阳性</option>
+                            <option>阴性</option>
+                        </select>
+                    </td>
+                    <td>阴性</td>
+                </tr>
+                <tr>
+                    <td>3 VacA</td>
+                    <td>空泡毒素相关蛋白A</td>
+                    <td>
+                        <select>
+                            <option>阳性</option>
+                            <option>阴性</option>
+                        </select>
+                    </td>
+                    <td>阴性</td>
+                </tr>
+                <tr>
+                    <td>4 HP-Ⅰ</td>
+                    <td>幽门螺杆菌Ⅰ 型</td>
+                    <td>
+                        <select>
+                            <option>Ⅰ型</option>
+                            <option>-</option>
+                        </select>
+                    </td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>5 HP-Ⅱ</td>
+                    <td>幽门螺杆菌Ⅱ 型</td>
+                    <td>
+                        <select>
+                            <option>Ⅱ型</option>
+                            <option>-</option>
+                        </select>
+                    </td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- 第五部分：注释 -->
+        <div class="annotation mb-4">
+            <p>Ⅰ型：CagA或VacA抗体表达阳性，感染高毒力HP菌株</p>
+            <p>Ⅱ型：Ure抗体表达阳性 ，CagA和VacA抗体表达都为阴性，感染低毒力HP菌株</p>
+            <p>阴性：Ure、CagA、VacA抗体表达均阴性，无感染</p>
+        </div>
+        <!-- 新增分隔线 -->
+        <div class="footer-separator"></div>
+        <!-- 第六部分：页脚 -->
+        <div class="footer-row">
+            <div class="input-row">
+                <label>申请时间：</label>
+                <span id="apply-time"></span>
+            </div>
+            <div class="input-row">
+                <label>接收时间：</label>
+                <span id="receive-time"></span>
+            </div>
+        </div>
+        <div class="footer-row">
+            <div class="input-row">
+                <label>采样时间：</label>
+                <input type="text">
+            </div>
+            <div class="input-row">
+                <label>接收人：</label>
+                <input type="text">
+            </div>
+        </div>
+        <div class="footer-row">
+            <div class="input-row">
+                <label>检验人：</label>
+                <input type="text">
+            </div>
+            <div class="input-row">
+                <label>复核人：</label>
+                <input type="text">
+            </div>
+        </div>
+        <div class="input-row">
+            <label>检测方法：</label>
+            <span>胶体金免疫层析技术</span>
+        </div>
+        <!-- 打印按钮 -->
+        <div class="right-align-button">
+            <button onclick="window.print()" class="bg-blue-500 text-white p-2 rounded no-print mt-4">打印</button>
+        </div>
+    </div>
+
+    <script>
+        function showReport() {
+            document.getElementById('login-register').classList.add('hidden');
+            document.getElementById('report').classList.remove('hidden');
+            const now = new Date();
+            const timeFormat = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')}/${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            document.getElementById('apply-time').textContent = timeFormat;
+            document.getElementById('receive-time').textContent = timeFormat;
+        }
+    </script>
+</body>
+
+</html>
+    
