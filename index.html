@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,6 +52,13 @@
             white-space: nowrap;
             margin-bottom: 8px;
         }
+        .input-row-short{
+           display: flex;
+            align-items: center;
+            white-space: nowrap;
+            margin-bottom: 8px;
+             width: 120px;
+         }
 
        .input-row label {
             margin-right: 8px;
@@ -83,9 +89,14 @@
             border-bottom: 0.5px solid black;
         }
 
+        /* 修改 select 样式 */
         select {
             border: none;
             outline: none;
+            width: 100%; /* 设置宽度为 100% */
+            -webkit-appearance: none; /* 隐藏 Safari 和 Chrome 的默认箭头 */
+            -moz-appearance: none; /* 隐藏 Firefox 的默认箭头 */
+            appearance: none; /* 隐藏默认箭头 */
         }
 
        .grid {
@@ -161,7 +172,7 @@
             </div>
         </div>
         <div class="grid grid-cols-3 gap-4 mb-4">
-            <div class="input-row">
+            <div class="input-row-short">
                 <label>性别：</label>
                 <select>
                     <option>男</option>
@@ -178,7 +189,7 @@
             </div>
         </div>
         <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class="input-row">
+            <div class="input-row-short">
                 <label>年龄：</label>
                 <input type="text">
             </div>
@@ -203,8 +214,8 @@
                     <td>尿素酶</td>
                     <td>
                         <select>
-                            <option>阳性</option>
                             <option>阴性</option>
+                            <option>阳性</option>
                         </select>
                     </td>
                     <td>阴性</td>
@@ -214,8 +225,8 @@
                     <td>细胞毒素相关蛋白A</td>
                     <td>
                         <select>
-                            <option>阳性</option>
                             <option>阴性</option>
+                            <option>阳性</option>
                         </select>
                     </td>
                     <td>阴性</td>
@@ -225,8 +236,8 @@
                     <td>空泡毒素相关蛋白A</td>
                     <td>
                         <select>
-                            <option>阳性</option>
                             <option>阴性</option>
+                            <option>阳性</option>
                         </select>
                     </td>
                     <td>阴性</td>
@@ -317,4 +328,3 @@
 </body>
 
 </html>
-    
